@@ -1,5 +1,7 @@
 import ManagedObject from "sap/ui/base/ManagedObject";
 
+import View from "./View";
+
 export default class ViewController extends ManagedObject
 {
     metadata = {
@@ -21,14 +23,21 @@ export default class ViewController extends ManagedObject
 
     afterInit()
     {
-        this._view = this.createView(this.getViewOptions());
-        this.initView();
+        this.view = this.createView(this.getViewOptions());
+        if (this.view instanceof View)
+        {
+            this.initView();
+        }
+        else
+        {
+            throw new Error("createView(options) must return an instance of sap.a.view.View.");
+        }
     }
 
 
     getView()
     {
-        return this._view;
+        return this.view;
     }
 
 
