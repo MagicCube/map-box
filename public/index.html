@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MapBox - A simple web map application.</title>
+    <script src="vendor/open-ui5/resources/sap-ui-core.js" charset="utf-8"
+        data-sap-ui-resourceroots='{ "sap.a": "/assets/sap/a", "mb": "/assets/mb" }'></script>
+</head>
+<body>
+<script>
+    sap.ui.define([ "mb/index" ], function() {
+        var applicatioonController = new mb.app.ApplicationController();
+        applicatioonController.run();
+    });
+</script>
+</body>
+</html>
