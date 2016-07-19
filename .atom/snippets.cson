@@ -1,0 +1,177 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# https://atom.io/docs/latest/using-atom-basic-customization#cson
+
+
+'.source.js':
+
+  'Gulp Default':
+    'prefix': 'gulp-default'
+    'body': """
+        const del = require("del");
+        const gulp = require("gulp");
+        const runSequence = require("run-sequence");
+
+        const SRC_PATH = "${1:./client-src}";
+        const BUILD_PATH = "${2:./public/assets}";
+
+        gulp.task("default", [ "build" ]);
+
+        gulp.task("clean", cb => {
+            del(BUILD_PATH).then(() => {
+                cb();
+            }, reason => {
+                cb(reason);
+            });
+        });
+
+        gulp.task("build", [ "clean" ], cb => {
+            $3
+        });
+    """
+
+
+  'UI5 Managed Class':
+    'prefix': 'ui5-managed-class'
+    'body': """
+        import ${1:ManagedObject} from "${2:sap/ui/base/ManagedObject}";
+
+        export default class ${3:MyClass} extends ${1:ManagedObject}
+        {
+            init()
+            {
+                $4
+            }
+        }
+        """
+
+
+  'UI5 Adaptive UI View':
+    'prefix': 'ui5-view'
+    'body': """
+        import ${1:View} from "${2:sap/a/view/View}";
+
+        export default class ${3:UntitledView} extends ${1:View}
+        {
+            init()
+            {
+                super.init();
+                $4
+            }
+        }
+        """
+
+
+
+  'UI5 Adaptive UI View Controller':
+    'prefix': 'ui5-view-controller'
+    'body': """
+        import ViewController from "sap/a/view/ViewController";
+
+        import ${1:UntitledView} from "${2}";
+
+        export default class ${1:UntitledView}Controller extends ViewController
+        {
+            init()
+            {
+                super.init();
+            }
+
+            createView(options)
+            {
+                return new ${1:UntitledView}(options);
+            }
+
+            initView()
+            {
+                super.initView();
+                $3
+            }
+        }
+        """
+
+
+  'UI5 Adaptive UI Application':
+    'prefix': 'ui5-application'
+    'body': """
+        import ${1:AdaptiveUIApplication} from "${2:sap/a/app/Application}";
+
+        export default class ${3:Application} extends ${1:AdaptiveUIApplication}
+        {
+            init()
+            {
+                super.init();
+            }
+        }
+        """
+
+
+  'UI5 Adaptive UI Application Controller':
+    'prefix': 'ui5-application-controller'
+    'body': """
+      import AdaptiveApplicationController from "sap/a/app/ApplicationController";
+
+      import ${1:Application} from "${2:./Application}";
+
+      export default class ${1:Application}Controller extends AdaptiveApplicationController
+      {
+          init()
+          {
+              super.init();
+          }
+
+          createView(options)
+          {
+              return new ${1:Application}(options);
+          }
+
+          initView()
+          {
+              super.initView();
+              $3
+          }
+
+          run()
+          {
+              super.run();
+              $4
+          }
+      }
+      """
+
+
+
+  'UI5 Metadata':
+    'prefix': 'ui5-metadata'
+    'body': """
+metadata = {
+    properties: {
+        property1: { type: "string", bindable: true, defaultValue: "abc" },
+        property2: { type: "int" }
+    },
+    aggregations: {
+		items: { type: "string" }
+	},
+    events: {
+        event1: { parameters: { param1: "string", param2: "float" } }
+    }
+};
+        """
