@@ -6,7 +6,7 @@ export default class ApplicationController extends AdaptiveApplicationController
 {
     createView(options)
     {
-        return new Application();
+        return new Application(options);
     }
 
     run()
