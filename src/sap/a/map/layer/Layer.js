@@ -10,7 +10,7 @@ export default class Layer extends ManagedObject
 
     init()
     {
-        this.container = L.layerGroup();
+        this.container = L.featureGroup();
     }
 
     afterInit()
@@ -23,6 +23,19 @@ export default class Layer extends ManagedObject
     isVisible()
     {
         return this.getParent() !== null && this.getParent().map.hasLayer(this.container);
+    }
+
+    getBounds()
+    {
+        return this.container.getBounds();
+    }
+
+    fitBounds()
+    {
+        if (this.getParent())
+        {
+            this.getParent().setBounds(this.getBounds());
+        }
     }
 
 
