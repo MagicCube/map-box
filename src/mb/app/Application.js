@@ -4,18 +4,16 @@ import MapView from "../map/MapView";
 
 export default class Application extends AdaptiveApplication
 {
-    init()
+    afterInit()
     {
-        super.init();
+        super.afterInit();
         this.addStyleClass("mb-app");
         this._initMapView();
     }
 
     _initMapView()
     {
-        this.mapView = new MapView("map-view", {
-            defaultZoom: 10
-        });
+        this.mapView = new MapView("map-view");
         this.addSubview(this.mapView);
     }
 }
