@@ -133,6 +133,12 @@ export default class MapView extends View
         }
     }
 
+    destroyLayers(suppressInvalidate)
+    {
+        this.removeAllLayers();
+        this.destroyAggregation("layers", suppressInvalidate);
+    }
+
     showLayer(layer)
     {
         if (!layer instanceof Layer || layer.getParent() !== this) return;

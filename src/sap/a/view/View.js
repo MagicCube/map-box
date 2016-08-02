@@ -32,7 +32,13 @@ export default class View extends ManagedObject
             this.$element.attr("id", this.getId());
         }
         this.$container = this.$element;
+        this.initLayout();
 	}
+
+    initLayout()
+    {
+
+    }
 
     getElementTag()
     {
@@ -126,6 +132,12 @@ export default class View extends ManagedObject
         }
     }
 
+    destroySubviews(suppressInvalidate)
+    {
+        this.removeAllSubviews(true);
+        this.destroyAggregation("subviews", suppressInvalidate);
+    }
+
     removeFromParent()
     {
         if (this.getParent())
@@ -133,6 +145,8 @@ export default class View extends ManagedObject
             this.getParent().removeSubview(this);
         }
     }
+
+
 
 
 

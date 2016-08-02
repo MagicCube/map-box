@@ -32,6 +32,7 @@ export default class ViewController extends ManagedObject
         if (this.view instanceof View)
         {
             this.initView();
+            this.initChildViewControllers();
         }
         else
         {
@@ -40,6 +41,11 @@ export default class ViewController extends ManagedObject
     }
 
     initView()
+    {
+
+    }
+
+    initChildViewControllers()
     {
 
     }
@@ -80,6 +86,12 @@ export default class ViewController extends ManagedObject
         {
             this.removeChildViewController(this.getChildViewControllers()[0], neverUseAgain);
         }
+    }
+
+    destroyChildViewControllers(suppressInvalidate)
+    {
+        this.removeAllChildViewController(true);
+        this.destroyAggregation("childViewController", suppressInvalidate);
     }
 
     removeFromParent()
